@@ -16,7 +16,7 @@ void merge (vector<int> &v, int e, int m, int d)
 	}
 	while (i <= m) B[k++] = v[i++];
 	while (j <= d) B[k++] = v[j++];
-	for (k = 0; k = d - e; ++k) v[e+k] = B[k];
+	for (k = 0; k <= d - e; ++k) v[e+k] = B[k];
 }
 
 void mergesort(vector<int> v, int e, int d)
