@@ -18,10 +18,11 @@ int dicot_search(vector<int> &v, int x, int l, int r)
 
 
 int main() {
-  int Start = clock();
   vector<int> v(10000000);
+  srand(time(NULL));
   for (int i = 0; i < 10000000; ++i)
   	v[i] = i;
+  int Start = clock();
   dicot_search(v, rand()%10000000, 0, 9999999);
   cout << "--- " << (clock() - Start)/double(CLOCKS_PER_SEC) << " seconds ---" << endl;
 }

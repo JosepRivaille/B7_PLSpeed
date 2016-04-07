@@ -47,12 +47,15 @@ func mergesort(v []int, e int, d int) {
 }
 
 func main() {
+	var size int
+	fmt.Printf("Write vector size: ")
+	fmt.Scan(&size)
+	v := make([]int, size)
+	for i:=0; i < size; i++ {
+		v[i] = rand.Intn(size)
+	}
 	rand.Seed(time.Now().UTC().UnixNano())
 	start := time.Now()
-	v := make([]int, 100000000)
-	for i:=0; i < 100000000; i++ {
-		v[i] = rand.Intn(100000000)
-	}
-	mergesort(v, 0, 99999999)
+	mergesort(v, 0, size - 1)
 	fmt.Printf("--- %s ---\n", time.Since(start))
 }

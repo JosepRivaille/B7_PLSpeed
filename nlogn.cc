@@ -19,7 +19,7 @@ void merge (vector<int> &v, int e, int m, int d)
 	for (k = 0; k <= d - e; ++k) v[e+k] = B[k];
 }
 
-void mergesort(vector<int> v, int e, int d)
+void mergesort(vector<int> &v, int e, int d)
 {
 	if (e < d) {
 		int m = (e + d)/2;
@@ -31,12 +31,15 @@ void mergesort(vector<int> v, int e, int d)
 
 int main()
 {
-	int Start = clock();
-	vector<int> v(10000000);
-	srand(time(NULL));
-	for (int i = 0; i < 10000000; i++) {
-		v[i] = rand() % 10000001;
+  int size;
+  cout << "Write vector size: ";
+  cin >> size;
+  vector<int> v(size);
+  srand(time(NULL));
+	for (int i = 0; i < size; i++) {
+		v[i] = rand() % size;
 	}
-	mergesort(v, 0, 9999999);
+	int Start = clock();
+	mergesort(v, 0, size - 1);
 	cout << "--- " << (clock() - Start)/double(CLOCKS_PER_SEC) << " seconds ---" << endl;
 }

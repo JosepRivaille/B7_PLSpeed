@@ -19,12 +19,13 @@ func b_search(v[10000000] int, x int, l int, r int) int {
 }
 
 func main() {
-	start := time.Now()
 	var v [10000000] int
 	for i:=0; i < 10000000; i++ {
 		v[i] = i
 	}
 	x := rand.Intn(10000000)
+	rand.Seed(time.Now().UTC().UnixNano())
+	start := time.Now()
 	b_search(v, x, 0, 9999999)
 	fmt.Printf("--- %s ---\n", time.Since(start))
 }

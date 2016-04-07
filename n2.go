@@ -5,10 +5,10 @@ import "time"
 import "math/rand"
 
 
-func selection_sort(v []int) {
-	for i := 0; i < 10000000; i++ {
+func selection_sort(v []int, size int) {
+	for i := 0; i < size; i++ {
 		imin := i
-		for j := i; j < 10000000; j++ {
+		for j := i; j < size; j++ {
 			if v[j] < v[imin] {
 				imin = j;
 			} 
@@ -22,12 +22,15 @@ func selection_sort(v []int) {
 }
 
 func main() {
+	var size int
+	fmt.Printf("Write vector size: ")
+	fmt.Scan(&size)
+	v := make([]int, size)
+	for i:=0; i < size; i++ {
+		v[i] = rand.Intn(size)
+	}
 	rand.Seed(time.Now().UTC().UnixNano())
 	start := time.Now()
-	v := make([]int, 10000000)
-	for i:=0; i < 10000000; i++ {
-		v[i] = rand.Intn(10000000)
-	}
-	selection_sort(v)
+	selection_sort(v, size)
 	fmt.Printf("--- %s ---\n", time.Since(start))
 }

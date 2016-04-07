@@ -22,9 +22,14 @@ void selection_sort(vector<int>& v)
 
 int main()
 {
+  int size;
+  cout << "Write vector size: ";
+  cin >> size;
+  vector<int> v(size);
+  srand(time(NULL));
+  for (int i=0; i<v.size(); ++i)
+    v[i] = rand();
   int Start = clock();
-  vector<int> v(100000000);
-  for (int i=0; i<v.size(); ++i) v[i] = rand();
   selection_sort(v);
   cout << "--- " << (clock() - Start)/double(CLOCKS_PER_SEC) << " seconds ---" << endl;
 }
