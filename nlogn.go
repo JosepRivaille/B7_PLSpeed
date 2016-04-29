@@ -1,9 +1,7 @@
 package main
 
-import "fmt"
-import "time"
-import "math/rand"
-
+import "strconv"
+import "os"
 
 func merge(v []int, e int, m int, d int) {
 	size := d-e+1
@@ -34,7 +32,7 @@ func merge(v []int, e int, m int, d int) {
 	}
 	for k := 0; k <= d-e; k++ {
 		v[e+k] = B[k]
-	}	
+	}
 }
 
 func mergesort(v []int, e int, d int) {
@@ -47,15 +45,11 @@ func mergesort(v []int, e int, d int) {
 }
 
 func main() {
-	var size int
-	fmt.Printf("Write vector size: ")
-	fmt.Scan(&size)
-	v := make([]int, size)
-	for i:=0; i < size; i++ {
-		v[i] = rand.Intn(size)
+	v := make([]int, 0)
+	args := os.Args
+	for i := 1; i < len(args); i++ {
+		f,_ := strconv.Atoi(os.Args[i])
+		v = append(v, f)
 	}
-	rand.Seed(time.Now().UTC().UnixNano())
-	start := time.Now()
-	mergesort(v, 0, size - 1)
-	fmt.Printf("--- %s ---\n", time.Since(start))
+	mergesort(v, 0, len(args) - 1)
 }

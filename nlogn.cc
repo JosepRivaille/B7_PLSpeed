@@ -1,7 +1,5 @@
-#include <iostream>
 #include <vector>
-#include <cstdlib>
-#include <ctime>
+#include <stdlib.h>
 using namespace std;
 
 void merge (vector<int> &v, int e, int m, int d)
@@ -29,17 +27,10 @@ void mergesort(vector<int> &v, int e, int d)
 	}
 }
 
-int main()
+int main(int argc, char *argv[])
 {
-  int size;
-  cout << "Write vector size: ";
-  cin >> size;
-  vector<int> v(size);
-  srand(time(NULL));
-	for (int i = 0; i < size; i++) {
-		v[i] = rand() % size;
-	}
-	int Start = clock();
-	mergesort(v, 0, size - 1);
-	cout << "--- " << (clock() - Start)/double(CLOCKS_PER_SEC) << " seconds ---" << endl;
+  vector<int> v(argc - 1);
+	for (int i = 1; i < argc; ++i)
+		v[i-1] = atoi(argv[i]);
+	mergesort(v, 0, argc - 2);
 }
