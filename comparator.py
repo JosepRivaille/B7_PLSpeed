@@ -20,7 +20,7 @@ if __name__ == '__main__':
             command = ['']
             # 32-bit range vector(n) random generator
             for y in range(0, n-1):
-                command.append(str(random.randint(-2147473648, -2147473648)))
+                command.append(str(random.randint(-2147473648, 2147473647)))
 
             if(random.choice((True, False))):
                 program1, program2 = program2, program1
