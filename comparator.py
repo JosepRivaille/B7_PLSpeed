@@ -13,8 +13,8 @@ if __name__ == '__main__':
     else:
         program1 = argv[1]
         program2 = argv[2]
-        n = argv[3]
-        executions = argv[4]
+        n = int(argv[3])
+        executions = int(argv[4])
 
         for x in range(0, executions):
             command = ['']
@@ -30,7 +30,7 @@ if __name__ == '__main__':
             pre = time.time()
             call(command)
             post = time.time()
-            f = open(program1 + ' - ' + str(n), 'a')
+            f = open(program1 + '-' + str(n), 'a')
             f.write(str(post-pre) + "ms\n")
             f.close
 
@@ -39,6 +39,6 @@ if __name__ == '__main__':
             pre = time.time()
             call(command)
             post = time.time()
-            f = open(program2 + ' - ' + str(n), 'a')
+            f = open(program2 + '-' + str(n), 'a')
             f.write(str(post-pre) + "ms\n")
             f.close
