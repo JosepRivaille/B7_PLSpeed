@@ -48,10 +48,12 @@ if __name__ == '__main__':
             f = open(program2 + '-' + str(n), 'a')
             f.write(str(post-pre) + "s\n")
             f.close
-
-        # Write median program1
+	
+        # Write total and median program1
         f = open(program1 + '-' + str(n), 'a')
-        f.write("\nMedian: " + str(med_pro1/executions)+ "\n")
-        # Write median program2
+        f.write("\nTotal: " + str(med_pro1) + "s")
+        f.write("\nMedian: " + str(med_pro1/executions) + "s\n")
+        # Write total and median program2
         f = open(program2 + '-' + str(n), 'a')
-        f.write("\nMedian: " + str(med_pro2/executions)+ "\n")
+        f.write("\nTotal: " + str(med_pro2) + "s")
+        f.write("\nMedian: " + str(med_pro2/executions) + "s\n")
