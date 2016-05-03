@@ -51,5 +51,5 @@ func main() {
 		f,_ := strconv.Atoi(os.Args[i])
 		v = append(v, f)
 	}
-	mergesort(v, 0, len(args) - 1)
+	mergesort(v, 0, len(v) - 1)
 }
