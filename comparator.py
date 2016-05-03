@@ -1,5 +1,6 @@
 import time
 import random
+import os
 from subprocess import call
 from sys import argv
 
@@ -19,11 +20,13 @@ if __name__ == '__main__':
         med_pro1 = 0;
         med_pro2 = 0;
 
+        command = ['', str(n), "vector-" + str(n)]
+
         for x in range(0, executions):
-            command = ['']
             # 32-bit range vector(n) random generator
+            f = open('vector-' + str(n), 'a')
             for y in range(0, n-1):
-                command.append(str(random.randint(-2147473648, 2147473647)))
+                f.write(str(random.randint(-2147473648, 2147473647)) + '\n');
 
             if(random.choice((True, False))):
                 program1, program2 = program2, program1
@@ -48,7 +51,10 @@ if __name__ == '__main__':
             f = open(program2 + '-' + str(n), 'a')
             f.write(str(post-pre) + "s\n")
             f.close
-	
+
+            # Remove vector data file
+            os.remove('vector-' + str(n))
+
         # Write total and median program1
         f = open(program1 + '-' + str(n), 'a')
         f.write("\nTotal: " + str(med_pro1) + "s")

@@ -1,7 +1,10 @@
 package main
 
-import "strconv"
-import "os"
+import(
+		"fmt"
+    "io"
+		"os"
+)
 
 func merge(v []int, e int, m int, d int) {
 	size := d-e+1
@@ -44,12 +47,34 @@ func mergesort(v []int, e int, d int) {
 	}
 }
 
+func readFile(filePath string) (numbers []int) {
+    fd, err := os.Open(filePath)
+    if err != nil {
+        panic(fmt.Sprintf("open %s: %v", filePath, err))
+    }
+    var line int
+    for {
+
+        _, err := fmt.Fscanf(fd, "%d\n", &line)
+
+        if err != nil {
+            fmt.Println(err)
+            if err == io.EOF {
+                return
+            }
+            panic(fmt.Sprintf("Scan Failed %s: %v", filePath, err))
+
+        }
+        numbers = append(numbers, line)
+    }
+    return
+}
+
 func main() {
-	v := make([]int, 0)
-	args := os.Args
-	for i := 1; i < len(args); i++ {
-		f,_ := strconv.Atoi(os.Args[i])
-		v = append(v, f)
-	}
+	filename := os.Args[2]
+	v := readFile(filename)
 	mergesort(v, 0, len(v) - 1)
+	//for i := 0; i < len(v); i++ {
+	//	fmt.Printf("%d\n", v[i])
+	//}
 }

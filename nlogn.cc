@@ -1,4 +1,7 @@
+#include <iostream>
 #include <vector>
+#include <string>
+#include <fstream>
 #include <stdlib.h>
 using namespace std;
 
@@ -29,8 +32,14 @@ void mergesort(vector<int> &v, int e, int d)
 
 int main(int argc, char *argv[])
 {
-  vector<int> v(argc - 1);
-	for (int i = 1; i < argc; ++i)
-		v[i-1] = atoi(argv[i]);
-	mergesort(v, 0, argc - 2);
+	vector<int> v(atoi(argv[1]));
+	ifstream infile(argv[2]);
+	int num;
+	int i = 0;
+	while (infile >> num)
+		v[i++] = num;
+	infile.close();
+	mergesort(v, 0, v.size() - 1);
+	//for (int i = 0; i < v.size(); ++i)
+	//	cout << v[i] << endl;
 }
