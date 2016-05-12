@@ -1,9 +1,9 @@
 package main
 
 import(
-		"fmt"
+	"fmt"
     "io"
-		"os"
+	"os"
 )
 
 func merge(v []int, e int, m int, d int) {

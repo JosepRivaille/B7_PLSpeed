@@ -1,6 +1,7 @@
 import time
 import random
 import os
+import csv
 from subprocess import call
 from sys import argv
 
@@ -17,8 +18,10 @@ if __name__ == '__main__':
         n = int(argv[3])
         executions = int(argv[4])
 
-        med_pro1 = 0;
-        med_pro2 = 0;
+        data1 = []
+        data2 = []
+        median1 = 0
+        median2 = 0
 
         command = ['', str(n), "vector-" + str(n)]
 
@@ -30,36 +33,39 @@ if __name__ == '__main__':
 
             if(random.choice((True, False))):
                 program1, program2 = program2, program1
-                med_pro1, med_pro2 = med_pro2, med_pro1
+                data1, data2 = data2, data1
 
             # Program1
             command[0] = './' + program1
             pre = time.time()
             call(command)
             post = time.time()
-            med_pro1 = med_pro1 + (post - pre);
-            f = open(program1 + '-' + str(n), 'a')
-            f.write(str(post-pre) + "s\n")
-            f.close
+            data1.append(post - pre)
+            median1 += post - pre
 
             # Program2
             command[0] = './' + program2
             pre = time.time()
             call(command)
             post = time.time()
-            med_pro2 = med_pro2 + (post - pre);
-            f = open(program2 + '-' + str(n), 'a')
-            f.write(str(post-pre) + "s\n")
-            f.close
+            data2.append(post - pre)
+            median2 += post - pre
 
             # Remove vector data file
             os.remove('vector-' + str(n))
-
-        # Write total and median program1
-        f = open(program1 + '-' + str(n), 'a')
-        f.write("\nTotal: " + str(med_pro1) + "s")
-        f.write("\nMedian: " + str(med_pro1/executions) + "s\n")
-        # Write total and median program2
-        f = open(program2 + '-' + str(n), 'a')
-        f.write("\nTotal: " + str(med_pro2) + "s")
-        f.write("\nMedian: " + str(med_pro2/executions) + "s\n")
+        
+        ofile = open('times-' + str(n) + '.csv', "wb")
+        writ = csv.writer(ofile)
+        writ.writerow(['#execution', program1, program2]) # Header
+		
+        i = 0
+        while (i < executions): # Writes each execution time for both languages
+			writ.writerow([i+1, data1[i], data2[i]])
+			i += 1
+		
+        median1 /= executions
+        median2 /= executions
+        writ.writerow([]) # Empty line
+        writ.writerow(['median:', median1, median2])
+		
+        ofile.close()
