@@ -136,4 +136,4 @@ if __name__ == '__main__':
               
             ofile.close()
 
-    print("\nFinished data recollection!\n")
+        print("\nFinished data recollection!\n")
