@@ -58,7 +58,6 @@ func readFile(filePath string) (numbers []int) {
         _, err := fmt.Fscanf(fd, "%d\n", &line)
 
         if err != nil {
-            fmt.Println(err)
             if err == io.EOF {
                 return
             }
@@ -74,7 +73,4 @@ func main() {
 	filename := os.Args[2]
 	v := readFile(filename)
 	mergesort(v, 0, len(v) - 1)
-	//for i := 0; i < len(v); i++ {
-	//	fmt.Printf("%d\n", v[i])
-	//}
 }

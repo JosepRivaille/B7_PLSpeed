@@ -10,4 +10,4 @@ clean_data: nlogncpp-* nlogngo-*
 	rm -f nlogncpp-* nlogngo-*
 
 clean:
-	rm -f nlogncpp nlogngo
+	rm -f nlogncpp nlogngo *.csv
