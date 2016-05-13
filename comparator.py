@@ -86,7 +86,7 @@ if __name__ == '__main__':
                 median1 = 0
                 median2 = 0
 
-                command = ['', str(n), "vector-" + str(z)]
+                command = ['', str(z), "vector-" + str(z)]
 
                 for x in range(0, executions):
                     # 32-bit range vector(n) random generator
@@ -104,14 +104,14 @@ if __name__ == '__main__':
                     pre = time.time()
                     call(command)
                     post = time.time()
-                    median1 += post - pre
+                    median1 += (post - pre)
 
                     # Program2
                     command[0] = './' + program2
                     pre = time.time()
                     call(command)
                     post = time.time()
-                    median2 += post - pre
+                    median2 += (post - pre)
 
                     # Remove vector data file
                     os.remove('vector-' + str(z))
