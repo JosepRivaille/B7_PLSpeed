@@ -116,8 +116,8 @@ if __name__ == '__main__':
                     # Remove vector data file
                     os.remove('vector-' + str(z))
 
-                    # Increment in x steps
-                    z += steps
+                # Increment z step by step
+                z += steps
                 
                 median1 /= executions
                 median2 /= executions
